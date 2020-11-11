@@ -26,7 +26,7 @@ export const Item = styled.div`
   overflow: hidden;
   box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.11);
 
-  h4 {
+  h3 {
     color: ${({ theme }) => (theme === 'light' ? '#212121' : '#fff')};
   }
 
@@ -36,36 +36,25 @@ export const Item = styled.div`
 `;
 
 export const Content = styled.div`
-  padding: 1rem 0;
-  min-height: 160px;
-`;
-
-export const Stats = styled.div`
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  p {
+    margin-top: 80px
+    margin-bottom: 0;
+    max-width: 240px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    font-size: 20px;
+    min-height: 100px;
+  }
 
-  div {
-    display: flex;
-    &:first-child {
-      margin-right: 0.5rem;
-    }
-
-    img {
-      margin: 0;
-    }
-
-    svg path {
-      fill: ${({ theme }) => (theme === 'light' ? '#000' : '#fff')};
-    }
-
-    span {
-      color: ${({ theme }) => (theme === 'light' ? '#000' : '#fff')};
-      margin-left: 0.5rem;
-    }
+  h3 {
+    text-align: center;
   }
 `;
 
-export const Languages = styled.div`
-  opacity: 0.5;
-  font-size: 14px;
+export const Icon = styled.img`
+  margin-bottom: 80px;
+  height: 200px;
 `;

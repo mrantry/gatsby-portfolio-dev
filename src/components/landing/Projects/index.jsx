@@ -1,83 +1,59 @@
 import React, { useContext } from 'react';
-import { useStaticQuery, graphql } from 'gatsby';
 import { ThemeContext } from 'providers/ThemeProvider';
-import { Container, Card, TitleWrap } from 'components/common';
-import Star from 'components/common/Icons/Star';
-import Fork from 'components/common/Icons/Fork';
-import { Wrapper, Grid, Item, Content, Stats, Languages } from './styles';
+import { Container, Card } from 'components/common';
+import { Wrapper, Grid, Item, Content, Icon } from './styles';
+import agreement from 'assets/illustrations/agreement.svg';
+import people from 'assets/illustrations/people.svg';
+import peopleSearch from 'assets/illustrations/people-search.svg';
+import chat from 'assets/illustrations/work-chat.svg';
+import contract from 'assets/illustrations/contract.svg';
+import invest from 'assets/illustrations/invest.svg';
 
 export const Projects = () => {
   const { theme } = useContext(ThemeContext);
-  const {
-    github: {
-      viewer: {
-        repositories: { edges },
-      },
+  const cards = [
+    {
+      text: "Results Over Profits",
+      description: "We do our best to deliver the best talent to the best companies.",
+      iconSrc: peopleSearch
     },
-  } = useStaticQuery(
-    graphql`
-      {
-        github {
-          viewer {
-            repositories(first: 8, orderBy: { field: STARGAZERS, direction: DESC }) {
-              edges {
-                node {
-                  id
-                  name
-                  url
-                  description
-                  stargazers {
-                    totalCount
-                  }
-                  forkCount
-                  languages(first: 3) {
-                    nodes {
-                      id,
-                      name
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    `
-  );
+    {
+      text: "People Over Process",
+      description: "Cerqit will never make a placement that we don't believe in 100%.",
+      iconSrc: people
+    },
+    {
+      text: "Open and Honest Communication",
+      description: "We provide honest assessments and sound advice on all things IT career",
+      iconSrc: chat
+    },
+    {
+      text: "Always Do Right By The Client",
+      description: "We work with our clients to determine the best solutions for IT talent sourcing.",
+      iconSrc: contract
+    },
+    {
+      text: "Invest in People",
+      description: "Cerqit stands behind their people and are here to support them through every career move",
+      iconSrc: invest
+    },
+    {
+      text: "Build Strong Relationships",
+      description: "Whether this is your 2nd job or your 22nd job, we're here for your career, not just a contract",
+    },
+  ]
   return (
     <Wrapper as={Container} id="projects">
-      <h2>Projects</h2>
+      <h2>Our Values</h2>
       <Grid>
-        {edges.map(({ node }) => (
-          <Item key={node.id} as="a" href={node.url} target="_blank" rel="noopener noreferrer" theme={theme}>
+        {cards.map((c, i) => (
+          <Item key={i} as="a" target="_blank" rel="noopener noreferrer" theme={theme}>
             <Card theme={theme}>
               <Content>
-                <h4>{node.name}</h4>
-                <p>{node.description}</p>
+                <Icon src={c.iconSrc || agreement} alt='Our Values Set Us Apart' />
+                <p>{c.description}</p>
+                <h3>{c.text}</h3>
               </Content>
-              <TitleWrap>
-                <Stats theme={theme}>
-                  <div>
-                    <Star color={theme === "light" ? "#000" : "#fff"} />
-                    <span>{node.stargazers.totalCount}</span>
-                  </div>
-                  <div>
-                    <Fork color={theme === "light" ? "#000" : "#fff"} />
-                    <span>{node.forkCount}</span>
-                  </div>
-                </Stats>
-                <Stats theme={theme}>
-                  <Languages>
-                    {
-                      node.languages.nodes.map(({ id, name }) => (
-                        <span key={id}>
-                          {name}
-                        </span>
-                      ))
-                    }
-                  </Languages>
-                </Stats>
-              </TitleWrap>
             </Card>
           </Item>
         ))}
