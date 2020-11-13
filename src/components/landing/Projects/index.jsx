@@ -43,7 +43,7 @@ export const Projects = () => {
     },
   ]
   return (
-    <Wrapper as={Container} id="projects">
+    <Wrapper as={Container} id="values">
       <h2>Our Values</h2>
       <Grid>
         {cards.map((c, i) => (

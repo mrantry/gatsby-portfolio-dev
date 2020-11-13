@@ -1,8 +1,8 @@
 [
   {
     "id": 1,
-    "name": "Github",
-    "link": "https://github.com/",
-    "icon": "/icons/github.svg"
+    "name": "LinkedIn",
+    "link": "https://www.linkedin.com/company/cerqit/",
+    "icon": "/icons/linkedin.svg"
   }
 ]
