@@ -24,27 +24,36 @@ export default () => (
       recaptcha: Yup.string().required('Robots are not welcome yet!'),
     })}
     onSubmit={async ({ name, email, message }, { setSubmitting, resetForm, setFieldValue }) => {
-      try {
-        await axios({
-          method: 'POST',
-          url: `${process.env.GATSBY_PORTFOLIO_FORMIK_ENDPOINT}`,
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          data: JSON.stringify({
-            name,
-            email,
-            message,
-          }),
-        });
+      fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: encode({ "form-name": "contact", name, email, message })
+      }).then(() => {
         setSubmitting(false);
         setFieldValue('success', true);
         setTimeout(() => resetForm(), 6000);
-      } catch (err) {
+      }).catch(() => {
         setSubmitting(false);
         setFieldValue('success', false);
 				alert('Something went wrong, please try again!') // eslint-disable-line
-      }
+      })
+      // try {
+      //   await axios({
+      //     method: 'POST',
+      //     url: `/`,
+      //     headers: {
+      //       'Content-Type': 'application/json',
+      //     },
+      //     body: encode,
+      //   });
+      //   setSubmitting(false);
+      //   setFieldValue('success', true);
+      //   setTimeout(() => resetForm(), 6000);
+      // } catch (err) {
+      //   setSubmitting(false);
+      //   setFieldValue('success', false);
+			// 	alert('Something went wrong, please try again!') // eslint-disable-line
+      // }
     }}
   >
     {({ values, touched, errors, setFieldValue, isSubmitting }) => (
