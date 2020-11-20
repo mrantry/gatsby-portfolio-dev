@@ -6,6 +6,12 @@ import * as Yup from 'yup';
 import { Button, Input } from 'components/common';
 import { Error, Center, InputField } from './styles';
 
+const encode = (data) => {
+  return Object.keys(data)
+    .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
+    .join("&");
+}
+
 export default () => (
   <Formik
     initialValues={{
