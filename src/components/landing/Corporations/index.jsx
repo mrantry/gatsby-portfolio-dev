@@ -16,7 +16,7 @@ export function Corporations() {
           <p>
           After several years leading recruitment, it became clear that attracting and hiring good people was just one piece of a larger puzzle. 
           To hire good people you need to become good at attraction, selection, onboarding, retention and engagement otherwise you lose your talent somewhere along the way.
-          Whether you're looking for IT Securty, Architecture, Development, QA, or support, our talent will help you achieve your business goals.
+          Whether you're looking for IT Security, Architecture, Development, QA, or support, our talent will help you achieve your business goals.
           </p>
           <Button as={AnchorLink} href="#contact">
             Hire Talent
